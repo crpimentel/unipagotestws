@@ -1,0 +1,6 @@
+package com.repo;
+
+import org.springframework.data.repository.CrudRepository;
+public interface EmpleadoRepository extends CrudRepository<Empleado,int> {
+
+}

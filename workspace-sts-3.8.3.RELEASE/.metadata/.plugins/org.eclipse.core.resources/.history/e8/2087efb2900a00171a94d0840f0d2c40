@@ -1,0 +1,55 @@
+package com.unipago.controller;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.model.Empleado;
+import com.repo.EmpleadoRepository;
+
+import jnr.ffi.types.sa_family_t;
+//spring rest- 
+//esto es un api. Aplication Platorm Interface
+@RestController
+public class EmployeeController {
+	
+	EmpleadoRepository empleadoRepository;
+	//Debo poder recibir un objeto para insertar si se puede.
+	@RequestMapping("/save")
+	public Boolean save()
+	{
+		Boolean result=false;
+		Empleado empleado = new Empleado();
+		empleado.setNombre("Cristian");
+		empleado.setApellido("Pimentel");
+		empleado.setCorreoElectronico("cristiantabarepimentel@gmail.com");
+		empleado.setSexo("M");
+		empleado.setDireccion("Hainamosa Calle Primera Edf 14 apto 301");
+		empleado.setSueldo(70000);
+		empleado.setTelefono("849-943-3755");
+	     Date myDate;
+	        Calendar cal = Calendar.getInstance();
+	        cal.set(Calendar.MONTH, 1);
+	        cal.set(Calendar.DATE, 27);
+	        cal.set(Calendar.YEAR, 1989);
+	        cal.set(Calendar.HOUR,13);
+	        cal.set(Calendar.MINUTE,45);
+	        cal.set(Calendar.SECOND,52);
+	        myDate = cal.getTime();
+		empleado.setFechaNacimiento(myDate);
+		empleadoRepository.save(empleado);
+		result=true;
+		return result; 
+	} 
+	@RequestMapping(value="/buscarporapellido", method={RequestMethod.GET})
+	public Empleado buscarporapellido(@RequestParam("apellido") String apellido){
+		return this.empleadoRepository.buscarEmpleado(apellido);
+		
+	}
+}

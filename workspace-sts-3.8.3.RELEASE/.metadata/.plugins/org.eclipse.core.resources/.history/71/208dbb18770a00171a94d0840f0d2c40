@@ -1,0 +1,3 @@
+spring.datasource.url=jdbc:postgresql://localhost/unipagotest
+spring.datasource.username=postgres
+spring.datasource.password=postgre

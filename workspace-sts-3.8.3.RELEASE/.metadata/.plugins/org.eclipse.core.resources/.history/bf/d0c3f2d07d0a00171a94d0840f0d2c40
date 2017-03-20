@@ -1,0 +1,28 @@
+package com.model;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.Date;
+@Entity
+public class Empleado {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int Id;
+	@Column(name="nombre")
+	private String nombre;	
+	@Column(name="apellido")
+	private String apellido;
+	@Column(name="sexo")
+	private String sexo;
+	@Column(name="fechaNacimiento")
+	private Date  fechaNacimiento;
+	@Column(name="direccion")
+	private String direccion;
+	@Column(name="correoElectronico")
+	private String correoElectronico;
+	@Column(name="telefono")
+	private String telefono;
+	
+}
